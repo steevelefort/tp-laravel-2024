@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
+use App\Models\Product;
 use App\Models\ProductManager;
 use Illuminate\Http\Request;
 
@@ -10,12 +11,14 @@ class ProductController extends Controller
 {
     //
     public function viewAll() {
-        $products = ProductManager::getAllProducts();
+        // $products = ProductManager::getAllProducts();
+        $products = Product::all();
         return view("products")->with("products",$products);
     }
 
     public function details($id) {
-        $product = ProductManager::getProductById($id);
+        // $product = ProductManager::getProductById($id);
+        $product = Product::find($id);
         return view("details")->with("product",$product);
     }
 
@@ -56,8 +59,17 @@ class ProductController extends Controller
     }
 
     public function store(ProductRequest $request) {
-        return "ok";
+        // On créé le produit dans la base de données
+        $product = Product::create($request->all());
 
+        // Maintenant qu'on a l'ID du produit, on stocke l'image
+        if ($request->image != null) {
+          $image = $product->id . '.' . $request->image->extension();
+          $request->file('image')->move(public_path('images'), $image);
+          $product->image = $image;
+          $product->save();
+        }
+        return redirect("/");
     }
 
 }
