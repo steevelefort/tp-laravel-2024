@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Models\ProductManager;
 use Illuminate\Http\Request;
 
@@ -48,6 +49,15 @@ class ProductController extends Controller
             ->with("total",$total)
             ->with("vat",$vat)
             ->with("cart",$cart);
+    }
+
+    public function create() {
+      return view("product/create");
+    }
+
+    public function store(ProductRequest $request) {
+        return "ok";
+
     }
 
 }
