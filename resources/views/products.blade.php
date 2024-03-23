@@ -14,6 +14,7 @@
                 <a href="/details/{{$product->id}}"
                     class="bg-blue-700 text-white w-full p-2 text-center shadow-blue-500 flex-grow"><i
                         class="fa-solid fa-eye"></i> Voir</a>
+                @if (Auth::check() && Auth::user()->isAdmin)
                 <a href="/product/modify/{{$product->id}}"
                     class="bg-yellow-600 text-white p-2 text-center shadow-blue-500"><i
                         class="fa-solid fa-pen-to-square"></i></a>
@@ -23,6 +24,7 @@
                     <button class="bg-red-700 text-white w-full p-2 text-center shadow-blue-500"><i
                             class="fa-solid fa-trash"></i></button>
                 </form>
+                @endif
             </div>
         </div>
     </article>
