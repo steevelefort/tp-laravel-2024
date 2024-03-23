@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text("description");
             $table->decimal("price",9,2);
             $table->decimal("vat",5,2);
-            $table->string("image");
+            $table->string("image")->nullable(); // On autorise l’image a être "null", car on veut choisir son nom (pas de mass assigment)
             $table->timestamps();
         });
     }

@@ -13,6 +13,6 @@ class Product extends Model
         "description",
         "price",
         "vat",
-        "image"
+        // "image" // On retire l’image des mass assignment
     ];
 }

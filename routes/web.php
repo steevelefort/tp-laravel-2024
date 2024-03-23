@@ -13,3 +13,8 @@ Route::get('/cart', [ProductController::class, "cart"]);
 
 Route::get('/product/create', [ProductController::class, "create"]);
 Route::post('/product/create', [ProductController::class, "store"]);
+
+Route::get('/product/modify/{id}', [ProductController::class, "modify"]);
+Route::put('/product/modify/{id}', [ProductController::class, "update"]);
+
+Route::delete('/product/delete/{id}', [ProductController::class, "delete"]);

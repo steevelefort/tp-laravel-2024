@@ -26,7 +26,7 @@ class ProductRequest extends FormRequest
             'description' => 'required',
             'price' => 'required|numeric|min:0|max:1000000',
             'vat' => 'required|numeric|min:0|max:100',
-            'image' => 'required|image'
+            'image' => (preg_match('/modify/',$this->server->get("REQUEST_URI")) ? "nullable" : "required").'|image'
         ];
     }
 }
