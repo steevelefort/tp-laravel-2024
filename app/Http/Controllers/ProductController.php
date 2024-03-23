@@ -24,7 +24,8 @@ class ProductController extends Controller
 
     public function add($id) {
         $cart = session("cart",[]);
-        $product = ProductManager::getProductById($id);
+        $product = Product::findOrFail($id);
+        // $product = ProductManager::getProductById($id);
         if (array_key_exists($id,$cart)) {
             $cart[$id]["quantity"]++;
         } else {
